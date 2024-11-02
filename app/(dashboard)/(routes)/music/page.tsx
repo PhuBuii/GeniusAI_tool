@@ -32,7 +32,6 @@ const MusicPage = () => {
       setMusic(undefined);
 
       const response = await axios.post("/api/music", values);
-      console.log(response);
 
       // Set the base64 audio string from the backend
       setMusic(response.data.audio);

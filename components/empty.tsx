@@ -13,7 +13,7 @@ const Empty = ({ label, type }: EmptyProps) => {
         {type === "image" && <Image alt="Empty" fill src="/empty_image.png" />}
         {type === "conversation" && <Image alt="Empty" fill src="/empty.png" />}
         {type === "music" && <Image alt="Empty" fill src="/empty_music.png" />}
-        {type === "video" && <Image alt="Empty" fill src="/empty_video.jpg" />}
+        {type === "video" && <Image alt="Empty" fill src="/empty_video.png" />}
       </div>
       <p className="text-muted-foreground text-md text-center">{label}</p>
     </div>
