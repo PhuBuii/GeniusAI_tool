@@ -2,7 +2,7 @@
 import axios from "axios";
 import * as z from "zod";
 import Heading from "@/components/heading";
-import { MessageSquare, VideoIcon } from "lucide-react";
+import { VideoIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -34,7 +34,7 @@ const ConversationPage = () => {
       console.log(response.data);
       setVideo(response.data);
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log(error);
     } finally {
       router.refresh();

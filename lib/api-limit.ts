@@ -1,4 +1,3 @@
-import { UserApiLimit } from "./../node_modules/.prisma/client/index.d";
 import { auth } from "@clerk/nextjs/server";
 
 import prismadb from "@/lib/prismadb";

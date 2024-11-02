@@ -48,7 +48,7 @@ const ImagePage = () => {
       setImages(urls);
 
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log(error);
     } finally {
       router.refresh();

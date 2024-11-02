@@ -50,7 +50,7 @@ const ConversationPage = () => {
       });
       setMessages((current) => [...current, response.data, userMessage]);
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log(error);
     } finally {
       router.refresh();

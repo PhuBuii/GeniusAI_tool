@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ChatCompletionMessage } from "openai/resources/index.mjs";
 import Empty from "@/components/empty";
 import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
@@ -24,7 +23,7 @@ type Role = "user" | "assistant";
 interface CustomChatCompletionMessage {
   content: string | null;
   refusal: string | null;
-  role: Role; // Allow both 'user' and 'assistant'
+  role: Role;
 }
 
 const CodePage = () => {
@@ -52,12 +51,13 @@ const CodePage = () => {
       });
       setMessages((current) => [...current, response.data, userMessage]);
       form.reset();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log(error);
     } finally {
       router.refresh();
     }
   };
+
   return (
     <div>
       <Heading
@@ -80,7 +80,7 @@ const CodePage = () => {
                   <FormItem className="col-span-12 lg:col-span-10">
                     <FormControl className="m-0 p-0">
                       <Input
-                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent "
+                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
                         placeholder="How do I code a button in HTML, CSS"
                         {...field}
@@ -118,12 +118,12 @@ const CodePage = () => {
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                 <ReactMarkdown
                   components={{
-                    pre: ({ node, ...props }) => (
+                    pre: (props) => (
                       <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
                         <pre {...props} />
                       </div>
                     ),
-                    code: ({ node, ...props }) => (
+                    code: (props) => (
                       <code className="bg-black/10 rounded-lg p-1" {...props} />
                     ),
                   }}
