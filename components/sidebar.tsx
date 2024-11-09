@@ -15,6 +15,7 @@ import {
   VideoIcon,
 } from "lucide-react";
 import FreeCounter from "./free-counter";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 const routes = [
@@ -66,7 +67,7 @@ interface SidebarProps {
 }
 const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
   const pathname = usePathname();
-
+  const { user } = useUser();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
@@ -97,6 +98,12 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
             </Link>
           ))}
         </div>
+      </div>
+      <div className="flex w-full justify-start p-4 items-center ">
+        <UserButton afterSwitchSessionUrl="/" />
+        <span className="text-sm ml-4">
+          {user?.emailAddresses?.[0]?.emailAddress}
+        </span>
       </div>
       <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
     </div>

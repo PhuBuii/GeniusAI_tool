@@ -24,7 +24,7 @@ body,
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 248 90% 66%;
+    --primary: 0 0% 0%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -43,6 +43,10 @@ body,
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --logo: #000;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -69,6 +73,10 @@ body,
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --logo: #fff;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
   }
 }
 
@@ -79,4 +87,20 @@ body,
   body {
     @apply bg-background text-foreground;
   }
+}
+.Card {
+  transition: background-color 0.3s, color 0.3s, border 0.3s;
+}
+.Card:hover {
+  background-color: var(--muted); /* Hover effect for dark mode */
+  color: var(--muted-foreground); /* Text color change on hover */
+}
+
+.logo {
+  color: var(--logo);
+}
+.cl-internal-1hp5nqm,
+.cl-internal-1dauvpw,
+.cl-internal-13u79ez {
+  display: none;
 }
