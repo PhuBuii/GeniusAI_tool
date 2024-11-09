@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { OpenAI } from "openai";
 import { ChatCompletionMessage } from "openai/resources/index.mjs";
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -32,15 +33,17 @@ export async function POST(req: Request) {
       return new NextResponse("Message is require", { status: 500 });
     }
     const freeTrial = checkApiLimit();
-    if (!freeTrial) {
+    const isPro = await checkSubscription();
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial has expired.", { status: 403 });
     }
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [istructionMessage, ...messages],
     });
-    await increaseApiLimit();
-
+    if (!isPro) {
+      await increaseApiLimit();
+    }
     return NextResponse.json(response.choices[0].message); // Return the assistant's message
   } catch (error) {
     console.error("[CODE_ERROR]", error);

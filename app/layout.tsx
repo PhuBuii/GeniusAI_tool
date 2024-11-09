@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.scss";
 import { ClerkProvider } from "@clerk/nextjs";
+import ModalProvider from "@/components/modal-provider";
+import { ToasterProvider } from "@/components/toaster-provider";
+import { CrispProvider } from "@/components/crisp-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,9 +33,12 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="/logo.svg" sizes="16" />
         </head>
+        <CrispProvider />
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <ToasterProvider />
+          <ModalProvider />
           {children}
         </body>
       </html>
