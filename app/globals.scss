@@ -89,7 +89,10 @@ body,
   }
 }
 .Card {
-  transition: background-color 0.3s, color 0.3s, border 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border 0.3s;
 }
 .Card:hover {
   background-color: var(--muted); /* Hover effect for dark mode */

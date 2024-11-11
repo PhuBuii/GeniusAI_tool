@@ -48,7 +48,7 @@ export const LandingNavbar = () => {
 
   return (
     <div className=" w-full p-4 transition-colors duration-500 ease-in-out">
-      <div className=" mx-auto w-full flex items-center justify-between">
+      <div className=" mx-auto w-full flex items-center h-full justify-between">
         <Link href="/" className="flex items-center">
           <div className="relative h-8 w-8 mr-4">
             <Image
